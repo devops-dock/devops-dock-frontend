@@ -1,0 +1,12 @@
+#title{
+    font-family: 'Young Serif', sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: #27374D;
+}
+
+.lead {
+    font-family: "Roboto", sans-serif;
+    font-size: 20px !important;
+    word-spacing: 1.5px;
+}

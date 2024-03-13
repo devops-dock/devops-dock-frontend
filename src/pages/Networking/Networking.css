@@ -1,0 +1,33 @@
+.error {
+  color: red;
+}
+
+.focus-ring {
+  --bs-focus-ring-width: 2px;
+  --bs-focus-ring-opacity: .25;
+}
+
+.input-group .btn:hover {
+  background-color: #636060 !important;
+}
+
+.output-box {
+  margin-top: 20px;
+  padding: 20px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  white-space: pre-wrap;
+}
+
+.table th {
+  background-color: #f0f5f9;
+  color: #586b76;
+}
+
+@media screen and (min-width: 668px) {
+  .container{
+    width: 60% !important;
+  }
+}
