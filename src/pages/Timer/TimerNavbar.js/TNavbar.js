@@ -5,12 +5,12 @@ import axios from 'axios';
 import TList from './TList';
 
 const TNavbar = () => {
+    // context
+    const { count } = useContext(MyContext);
     // modal state
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const [list, setList] = useState(null);
-    // context
-    const { count } = useContext(MyContext);
 
     const user = sessionStorage.getItem('userInfo') ?
         JSON.parse(sessionStorage.getItem('userInfo'))

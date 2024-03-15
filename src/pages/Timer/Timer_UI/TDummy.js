@@ -3,22 +3,19 @@ import useSound from 'use-sound';
 import axios from 'axios';
 import { MyContext } from '../Timer';
 import clickSound from '../../../assets/audio/Mouse_Click.mp3';
-import clockAlarm from '../../../assets/audio/clock-alarm.mp3';
 import '../Timer.css';
 import TimerNav from './TimerNav';
 import TimerButtons from './TimerButtons';
 
 export const MyTimerContext = createContext();
 
-const TimerUI = ({ finish, setFinish }) => {
+const TDummy = ({ setIsAllChecked, finish, setFinish }) => {
     const { todo, setTodo } = useContext(MyContext);
     const { setCount } = useContext(MyContext);
     const [timer, setTimer] = useState(25 * 60);
     const [timerName, setTimerName] = useState('timer');
     const [isActive, setIsActive] = useState(false);
-    const [playSound1] = useSound(clickSound);
-    const [playSound2] = useSound(clockAlarm);
-
+    const [playSound] = useSound(clickSound);
     const [unTask, setUnTask] = useState({});
 
     useEffect(() => {
@@ -29,20 +26,17 @@ const TimerUI = ({ finish, setFinish }) => {
         if(newtodo.length !== 0) {
             setCount(prev => prev + 1)
             setFinish(newtodo)
-            if(todo.length === newtodo.length) {
-                alert("Yay you completed all tasks !!");
-            }
         }
     }, [todo])
 
     useEffect(() => {
         let intervalId;
+        let result;
         if (isActive) {
             intervalId = setInterval(() => {
                 setTimer(prev => prev > 0 ? prev - 1 : 0)
             }, 1000);
-            if (timer === 0 && timerName === 'timer') {
-                playSound2();
+            if (timer === 0) {
                 let newtodo;
                 newtodo = { ...unTask, act: Number(Number(unTask.act) + 1) }
                 setUnTask({ ...newtodo })
@@ -56,6 +50,8 @@ const TimerUI = ({ finish, setFinish }) => {
                 handleStop();
             }
         }
+        
+
         return () => {
             clearInterval(intervalId)
         }
@@ -90,20 +86,20 @@ const TimerUI = ({ finish, setFinish }) => {
     const handleStart = () => {
         const stop = document.getElementById('stop');
         stop.style.display = 'inline-block';
-        playSound1();
+        playSound();
         setIsActive(prev => !prev);
     }
 
     const handleStop = () => {
-        playSound1();
+        playSound();
         if (timer >= 15 * 60) {
             setTimer(25 * 60)
             setIsActive(false)
-        } else if (timer >= 1 * 60 && timer <= 15 * 60) {
+        } else if (timer >= 1 * 15 && timer <= 15 * 60) {
             setTimer(15 * 60)
             setIsActive(false)
-        } else if (timer <= 1 * 60) {
-            setTimer(1 * 60)
+        } else if (timer <= 1 * 15) {
+            setTimer(1 * 15)
             setIsActive(false)
         }
         const stop = document.getElementById('stop');
@@ -133,4 +129,4 @@ const TimerUI = ({ finish, setFinish }) => {
     )
 }
 
-export default TimerUI;
+export default TDummy;

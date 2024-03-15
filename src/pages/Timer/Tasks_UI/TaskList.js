@@ -1,10 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ListGroup from 'react-bootstrap/ListGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
+import '../Timer.css';
 
-const TaskList = ({ todo, handleChecked, handleDelete, handleEdit }) => {
+const TaskList = ({ todo, setTodo, handleEdit }) => {
+    const handleChecked = (id) => {
+        const updatedCheck = todo.map(t => t.id === id ? { ...t, checked: !t.checked } : t)
+        setTodo(updatedCheck)
+    }
 
+    const handleDelete = (id) => {
+        const updateTodo = todo.filter(t => t.id !== id)
+        setTodo(updateTodo)
+    }
     return (
         <ListGroup>
             {todo ? todo.map(item => {
@@ -44,7 +53,6 @@ const TaskList = ({ todo, handleChecked, handleDelete, handleEdit }) => {
                         <p className='project'>{item.project_title}</p>
                     : null
                     }
-
                 </ListGroup.Item>
                 )
              }) : null }

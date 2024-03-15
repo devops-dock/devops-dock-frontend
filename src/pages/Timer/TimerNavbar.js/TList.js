@@ -4,7 +4,6 @@ import Table from 'react-bootstrap/Table';
 
 const TList = ({show, setShow, list}) => {
     const handleClose = () => setShow(false);
-    console.log(list)
 
     return (
         <Modal show={show} onHide={handleClose}>
@@ -24,7 +23,7 @@ const TList = ({show, setShow, list}) => {
                     <tbody>
                         {list && list.userTasks.map(t => {
                             return (
-                                <tr>
+                                <tr key={t.date}>
                                     <td>{t.date}</td>
                                     <td>
                                         <ul style={{listStyle: 'none', padding: 0}}>

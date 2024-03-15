@@ -27,11 +27,9 @@ const TimerNav = () => {
 
     function displayFunction(t, color, a, tname) {
         setTimer(t)
-        // setStoreTime(t)
         setBg(color)
         setIsActive(a)
         setTimerName(tname)
-        // storeTimerFunction(t)
     }
 
     return (

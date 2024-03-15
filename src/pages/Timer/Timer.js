@@ -1,5 +1,5 @@
 import React, { useState, createContext } from 'react';
-import TaskForm from './Tasks_UI/TaskForm';
+import TaskUI from './Tasks_UI/TaskUI';
 import TNavbar from './TimerNavbar.js/TNavbar';
 import TimerUI from './Timer_UI/TimerUI';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -7,10 +7,10 @@ import './Timer.css';
 
 export const MyContext = createContext();
 
-const Timer = ({ children }) => {
+const Timer = () => {
     const [todo, setTodo] = useState([]);
     const [count, setCount] = useState(0);
-    const [isAllChecked, setIsAllChecked] = useState(false);
+    // const [isAllChecked, setIsAllChecked] = useState(false);
     const [finish, setFinish] = useState([]);
     const [bg, setBg] = useState('#D24545');
 
@@ -25,7 +25,6 @@ const Timer = ({ children }) => {
 
     const handleClearTask = () => {
         const newTodo = todo.filter(t => t.checked !== true)
-        console.log(newTodo)
         setTodo(newTodo)
     }
 
@@ -33,12 +32,12 @@ const Timer = ({ children }) => {
         setTodo([])
     }
     
-    const handleCheckAllSubmit = () => {
-        setIsAllChecked(false)
-        const result = todo
-        console.log(todo)
-        setFinish([...finish, ...result])
-    }
+    // const handleCheckAllSubmit = () => {
+    //     setIsAllChecked(false)
+    //     const result = todo
+    //     console.log(todo)
+    //     setFinish([...finish, ...result])
+    // }
 
     return (
         <MyContext.Provider value={{ todo, setTodo, count, setCount, setBg }}>
@@ -47,10 +46,10 @@ const Timer = ({ children }) => {
                 
                 <div className='container mx-auto timerApp' style={{ backgroundColor: bg }}>
                     <TimerUI 
-                        isAllChecked={isAllChecked} 
-                        setIsAllChecked={setIsAllChecked}
+                        // isAllChecked={isAllChecked} 
+                        // setIsAllChecked={setIsAllChecked}
                         finish={finish}
-                        setFinish={setFinish}    
+                        setFinish={setFinish}   
                     />
 
                     <div className='d-flex align-items-center flex-row justify-content-between mt-4 mx-auto w-75'>
@@ -64,15 +63,16 @@ const Timer = ({ children }) => {
                         </Dropdown>
                     </div>
                     <hr className='w-75 mx-auto text-white' />
-                    <TaskForm />
+                    
+                    <TaskUI />
 
                     {/* if checked all */}
-                    {isAllChecked ? 
+                    {/* {isAllChecked ? 
                         <div className='text-md-end mx-5 mt-3' id='task-btn'>
                             <button className='btn btn-dark' type='submit' onClick={handleCheckAllSubmit}>Save All</button>
                         </div>
                     : null 
-                    }
+                    } */}
 
                     {/* Add task Button */}
                     <button className='btn px-5 py-2 my-3 mx-auto text-white fw-bold' id='addBtn' onClick={handleAddTask}>
