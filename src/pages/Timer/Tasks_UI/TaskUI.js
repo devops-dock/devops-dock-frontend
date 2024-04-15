@@ -5,8 +5,7 @@ import { MyContext } from '../Timer';
 import '../Timer.css';
 
 const TaskUI = () => {
-    const { todo } = useContext(MyContext);
-    const { setTodo } = useContext(MyContext);
+    const { todo, setTodo } = useContext(MyContext);
 
     const [isUpdate, setIsUpdate] = useState(false);
     const [form, setForm] = useState({

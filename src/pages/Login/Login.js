@@ -70,7 +70,7 @@ const Login = () => {
     }
 
     return (
-        <main className='main-container'>
+        <main className='main-container text-center'>
             <div className="form-container mx-auto pt-5">
                 <div className='form-wrapper mx-auto border border-outline-secondary p-2 bg-light'>
                     <h3 className='m-3'>LOGIN FORM</h3>

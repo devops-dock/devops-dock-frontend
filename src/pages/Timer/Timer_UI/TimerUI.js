@@ -37,15 +37,20 @@ const TimerUI = ({ finish, setFinish }) => {
 
     useEffect(() => {
         let intervalId;
+        // if active start timer
         if (isActive) {
+            // set timer itnerval of 1sec
             intervalId = setInterval(() => {
                 setTimer(prev => prev > 0 ? prev - 1 : 0)
             }, 1000);
+            // 
             if (timer === 0 && timerName === 'timer') {
                 playSound2();
                 let newtodo;
+                // increase 'act' count if repeated
                 newtodo = { ...unTask, act: Number(Number(unTask.act) + 1) }
                 setUnTask({ ...newtodo })
+                // replace original todos with new "added act" using 'map' function
                 const tos = todo.map(item => {
                     if (item.id === newtodo.id) {
                         return newtodo
@@ -119,7 +124,7 @@ const TimerUI = ({ finish, setFinish }) => {
 
     return (
         <MyTimerContext.Provider value={{ isActive, setIsActive, setTimer, setTimerName }}>
-            <div className='my-2 w-100'>
+            <div className='my-2 w-100 text-center'>
                 {/* timer navigation buttons */}
                 <TimerNav />
 

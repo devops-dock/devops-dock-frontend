@@ -8,6 +8,7 @@
 }
 
 .timerApp {
+    text-align: center;
     width: 45% !important;
     border: 1px solid rgba(232, 235, 238, 0.3);
 }
@@ -84,6 +85,57 @@
     color: grey;
     font-weight: 600;
 }
+
+/* TReport */
+#report {
+    max-width: 60% !important;
+}
+
+#report .modal-content {
+    align-items: center;
+}
+
+#report .modal-body {
+    width: 100%;
+}
+
+/* TList */
+#tableList td,  #tableList th {
+    border: 0.0625rem solid #ddd;
+    padding: 0.75rem;
+}
+#tableList tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  #tableList tr:hover {
+    background-color: #ddd;
+  }
+
+  #tableList th {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    text-align: left;
+    background-color: #0f4871;
+    color: white;
+  }
+
+
+  /* TContent */
+  .pomo-title {
+    color: tomato;
+    font-weight: 700;
+    border-bottom: 4px solid tomato;
+    width: fit-content;
+  }
+  .pomo-content {
+    font-size: 1.2rem;
+    text-align: justify;
+    font-family: 'Roboto', sans-serif;
+    word-spacing: 2px;
+    color: #0f4871;
+  }
+
 
 @media screen and (max-width: 767px) {
     .timerApp {

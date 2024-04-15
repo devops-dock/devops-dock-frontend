@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Networking.css';
+import CIDRContent from './CIDRContent';
 
 function Networking() {
   const [ipAddress, setIpAddress] = useState('');
@@ -38,7 +39,8 @@ function Networking() {
 
   return (
     <main className='container-fluid p-0 m-0 main-container'>
-      <div className='container pt-5'>
+      <div className='container pt-5 cidr'>
+        <h1 className='text-center font-bolder mb-3 cidr-title'>CIDR Calculator</h1>
         <form onSubmit={handleSubmit}>
           <div className='input-group mb-3'>
             <input
@@ -52,8 +54,10 @@ function Networking() {
             <button className='btn bg-secondary text-light' type='submit'>Calculate</button>
           </div>
         </form>
+
         {error && <p className="error">{error}</p>}
-        <div className="output-box">
+        
+        <div className="output-box mb-5">
           <table className='table table-bordered'>
             {apiResponse &&
               <tbody>
@@ -98,6 +102,8 @@ function Networking() {
           </table>
 
         </div>
+
+        <CIDRContent />
       </div>
     </main>
   )

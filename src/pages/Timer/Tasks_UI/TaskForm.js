@@ -4,8 +4,7 @@ import TaskButtons from './TaskButtons';
 import '../Timer.css';
 
 const TaskForm = ({ form, setForm, isUpdate, setIsUpdate }) => {
-    const { todo } = useContext(MyContext);
-    const { setTodo } = useContext(MyContext);
+    const { todo, setTodo } = useContext(MyContext);
 
     const handleChange = (e) => {
         setForm({
@@ -44,6 +43,7 @@ const TaskForm = ({ form, setForm, isUpdate, setIsUpdate }) => {
             title: '',
             description: '',
             project_title: '',
+            act: 0,
             checked: false
         })
     }
@@ -78,7 +78,7 @@ const TaskForm = ({ form, setForm, isUpdate, setIsUpdate }) => {
                         <input type='number' 
                             className='form-control w-25 me-2' name='act' 
                             value={Number(form.act) ? Number(form.act) : 0} 
-                            placeholder={0}
+                            placeholder={Number(0)}
                             onChange={isUpdate ? handleEditInputChange : handleChange} 
                         />
                         <span className='fs-3 me-2'> / </span>

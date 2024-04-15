@@ -1,7 +1,7 @@
 // src/components/Header/Header.js
 
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 
 function Header({ user }) {
@@ -39,7 +39,7 @@ function Header({ user }) {
                 <li className="nav-item me-lg-4 mb-2 mb-lg-0">
                   <Link className="nav-link" 
                     to={`/${user.displayName}/timer`}>
-                      Pomodora
+                      Pomodoro
                   </Link>
                 </li>
                 <li className='nav-item me-lg-4 mb-1 mb-lg-0 dropdown'>

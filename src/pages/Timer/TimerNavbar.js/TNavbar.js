@@ -3,6 +3,7 @@ import { MyContext } from '../Timer';
 import Nav from 'react-bootstrap/Nav';
 import axios from 'axios';
 import TList from './TList';
+import TReport from './TReport';
 
 const TNavbar = () => {
     // context
@@ -11,6 +12,10 @@ const TNavbar = () => {
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const [list, setList] = useState(null);
+
+    // report modal
+    const [report, setReport] = useState(false)
+    const handleReport = () => setReport(true);
 
     const user = sessionStorage.getItem('userInfo') ?
         JSON.parse(sessionStorage.getItem('userInfo'))
@@ -21,16 +26,14 @@ const TNavbar = () => {
     useEffect(() => {
         const getTasks = async () => {
             try {
-                await axios.post("http://localhost:5002/tasks", user)
-                    .then(result => {
-                        setList(result.data)
-                    })
+                const { data } = await axios.post("http://localhost:5002/tasks", user)
+                setList(data)
             } catch (err) {
                 console.log(err.message)
             }
         }
         getTasks()
-    }, [count])
+    }, [])
 
     return (
         <div className='mb-4'>
@@ -41,7 +44,7 @@ const TNavbar = () => {
                     </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link className='text-white rounded-pill py-1 px-5'>
+                    <Nav.Link className='text-white rounded-pill py-1 px-5' onClick={handleReport}>
                         Report
                     </Nav.Link>
                 </Nav.Item>
@@ -49,6 +52,9 @@ const TNavbar = () => {
 
             {/* modal */}
             <TList show={show} setShow={setShow} list={list}/>
+
+            {/* modal report */}
+            <TReport report={report} setReport={setReport} />
         </div>
     )
 }
